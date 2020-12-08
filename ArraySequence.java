@@ -10,14 +10,19 @@ public class ArraySequence implements IntegerSequence{
     }
   }
 
-  public boolean hasNext(){
-    return true;
-  }
-  public int next(){
-    return 1;
-  }
   public int length(){
-    return 1;
+    return data.length;
+  }
+
+  public boolean hasNext(){
+    if (currentIndex >= 0 && currentIndex <= data.length){
+      return true;
+    }
+    return false;
+  }
+
+  public int next(){
+    return currentIndex++;
   }
 
   public void reset(){
