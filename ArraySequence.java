@@ -15,14 +15,20 @@ public class ArraySequence implements IntegerSequence{
   }
 
   public boolean hasNext(){
-    if (currentIndex >= 0 && currentIndex <= data.length){
+    if (currentIndex >= 0 && currentIndex < data.length){
       return true;
     }
     return false;
   }
 
   public int next(){
-    return currentIndex++;
+    if (hasNext()){
+      currentIndex++;
+      return data[currentIndex - 1];
+    }
+    else{
+      throw new NoSuchElementException ("You are at the max value");
+    }
   }
 
   public void reset(){
