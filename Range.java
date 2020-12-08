@@ -6,6 +6,7 @@ public class Range implements IntegerSequence{
     if (start <= end){
       this.start = start;
       this.end = end;
+      current = start;
     }
     else{
       throw new  IllegalArgumentException ("Your start is greater than your end");
@@ -21,13 +22,19 @@ public class Range implements IntegerSequence{
   }
 
   public boolean hasNext(){
-    if (current == end){
-      return false;
+    if (current >= start && current <= end){
+      return true;
     }
-    return true;
+    return false;
   }
 
-  public int next() throws NoSuchElementException{
-    return current + 1;
+  public int next(){
+    if (hasNext()){
+      current = current + 1;
+      return current - 1;
+    }
+    else{
+      throw new NoSuchElementException ("You are at the max value");
+    }
   }
 }
